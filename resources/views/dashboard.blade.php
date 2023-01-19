@@ -14,7 +14,8 @@
                 @csrf
                 <div class="input-group">
                     <div class="input-group-text bg-white p-0">
-                        <input type="color" class="form-control form-control-color border-0" name="color" title="Escolha uma cor">
+                         <!--<input type="color" class="form-control form-control-color border-0" name="color" title="Escolha uma cor"> -->
+                         <input type="color" class="form-control form-control-color border-0" id="color" title="Escolha uma cor">
                     </div>
                     <input type="text" class="form-control" name="title" placeholder="O que fazer?" required>
                     <button type="submit" class="btn btn-secondary">
@@ -44,7 +45,7 @@
                                     <i class="bi bi-check2-square fs-4"></i>
                                 </a>
                             @endif
-                            <form action="/todos" method="post" class="ms-2">
+                            <form action="/todos/{{ $todo->id }}/" method="post" class="ms-2">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" style="all: unset; cursor: pointer;">
