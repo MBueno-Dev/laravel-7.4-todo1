@@ -115,4 +115,22 @@ class TodoController extends Controller
        
     
     }
+
+    public function update($todo, Request $request) {
+        $user = auth()->user();
+
+        $todo = Todo::find($todo);
+
+        if ($todo->user_id !== $user->id) {
+            return response('', 403);
+        }
+
+        $todo->color = $request->color;
+        $todo->title = $request->title;
+
+        $todo->save();
+
+        return redirect('/dashboard');
+    }
+
 }
