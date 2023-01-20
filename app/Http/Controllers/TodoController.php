@@ -31,6 +31,7 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+        //logger->debug('request', [$request->color]);
         try {
             $user = auth()->user();
 
@@ -98,5 +99,20 @@ class TodoController extends Controller
         }
 
         return redirect('/dashboard')->with('success', 'TODO deletado com sucesso');
+    }
+
+    public function edit(Todo $todo)
+    {
+        
+        $user = auth()->user();
+
+        if ($todo->user_id != $user->id) {
+            abort(404);
+        }
+
+        return view('edit', compact('todo'));
+
+       
+    
     }
 }
